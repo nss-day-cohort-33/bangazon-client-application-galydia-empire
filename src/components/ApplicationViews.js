@@ -29,7 +29,7 @@ const ApplicationViews = () => {
                 }}
             />
 
-            <Route
+            {/* <Route
                 path="/products" render={props => {
                     return (
                         <>
@@ -38,9 +38,9 @@ const ApplicationViews = () => {
                         </>
                     )
                 }}
-            />
+            /> */}
 
-            <Route
+            {/* <Route
                 path="/myprofile" render={props => {
                     return (
                         <>
@@ -49,7 +49,7 @@ const ApplicationViews = () => {
                         </>
                     )
                 }}
-            />
+            /> */}
 
             <Route
                 path="/paymenttypes" render={props => {
