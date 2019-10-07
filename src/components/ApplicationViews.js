@@ -11,11 +11,11 @@ const ApplicationViews = () => {
     return (
         <React.Fragment>
 
-            {/* <Route
+            <Route
                 exact path="/" render={props => {
-                    return <ParkExplorer {...props} />
+                    return <img className="theClaw" src={require("./home/Ravenclaw.jpg")} alt="My common room" />
                 }}
-            /> */}
+            />
 
             <Route
                 path="/register" render={props => {
@@ -29,35 +29,35 @@ const ApplicationViews = () => {
                 }}
             />
 
-            {/* <Route
-                path="/areas" render={props => {
+            <Route
+                path="/products" render={props => {
                     return (
                         <>
-                            <h1>Areas</h1>
+                            <h1>Products</h1>
                             <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
                         </>
                     )
                 }}
-            /> */}
+            />
 
-            {/* <Route
-                path="/attractions" render={props => {
+            <Route
+                path="/myprofile" render={props => {
                     return (
                         <>
-                            <h1>Attractions</h1>
+                            <h1>My Profile</h1>
                             <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
                         </>
                     )
                 }}
-            /> */}
+            />
 
-            {/* <Route
-                path="/myitinerary" render={props => {
+            <Route
+                path="/paymenttypes" render={props => {
                     return (
-                        <MyItinerary/>
+                        <h1>Pay Me</h1>
                     )
                 }}
-            /> */}
+            />
 
         </React.Fragment>
     )
