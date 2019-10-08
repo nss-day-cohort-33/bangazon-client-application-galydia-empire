@@ -1,19 +1,21 @@
-import { Route } from "react-router-dom"
+import { Route, withRouter } from "react-router-dom"
 import React from "react"
-import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
-// import ParkExplorer from "./home/ParkExplorer"
-// import MyItinerary from "./home/MyItinerary"
-
+import ProductCategories from "./productcategories/ProductCategories"
+import HomeProduct from "./home/HomeProduct"
+import ProductDetails from "./product/ProductDetails"
 
 const ApplicationViews = () => {
     return (
         <React.Fragment>
-
             <Route
                 exact path="/" render={props => {
-                    return <img className="theClaw" src={require("./home/Ravenclaw.jpg")} alt="My common room" />
+                    return (
+                    <>
+                    <HomeProduct {...props} />
+                    </>
+                    )
                 }}
             />
 
@@ -28,38 +30,19 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-
-            {/* <Route
-                path="/products" render={props => {
-                    return (
-                        <>
-                            <h1>Products</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
+            <Route
+                path="/productcategories" render={props => {
+                    return <ProductCategories {...props} />
                 }}
-            /> */}
-
-            {/* <Route
-                path="/myprofile" render={props => {
-                    return (
-                        <>
-                            <h1>My Profile</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
-                }}
-            /> */}
+                />
 
             <Route
-                path="/paymenttypes" render={props => {
-                    return (
-                        <h1>Pay Me</h1>
-                    )
-                }}
-            />
-
-        </React.Fragment>
+                exact path="/product/:productId(\d+)" render={props => {
+                    let productId = +props.match.params.productId
+                    return <ProductDetails {...props} productId={productId} />
+                    }}
+                />
+                </React.Fragment>
     )
 }
 
