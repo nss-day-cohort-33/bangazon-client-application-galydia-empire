@@ -29,16 +29,15 @@ const ApplicationViews = () => {
                 }}
             />
 
-            {/* <Route
-                path="/products" render={props => {
+            <Route
+                path="/productcategories" render={props => {
                     return (
                         <>
-                            <h1>Products</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
+                            <h1>Product Categories</h1>
                         </>
                     )
                 }}
-            /> */}
+            />
 
             {/* <Route
                 path="/myprofile" render={props => {
