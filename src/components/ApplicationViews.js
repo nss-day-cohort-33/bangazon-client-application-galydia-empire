@@ -30,21 +30,10 @@ const ApplicationViews = () => {
             />
             <Route
                 path="/productcategories" render={props => {
-                    return <ProductCategories {...props} />
 
+                    return <ProductCategories {...props} />
                 }}
             />
-
-            {/* <Route
-                path="/myprofile" render={props => {
-                    return (
-                        <>
-                            <h1>My Profile</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
-                }}
-            /> */}
 
             <Route
                 path="/paymenttypes" render={props => {
