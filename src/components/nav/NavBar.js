@@ -12,6 +12,9 @@ const NavBar = props => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/">Home(name pending)</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/sell-product">Sell A Product</Link>
+                </li>
                 {/* <li className="nav-item">
                     <Link className="nav-link" to="/myitinerary">My Itinerary</Link>
                 </li> */}
@@ -29,6 +32,7 @@ const NavBar = props => {
                             >Logout</button>
                         </li> :
                         <>
+
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login</Link>
                         </li>
