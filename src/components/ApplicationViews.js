@@ -3,6 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import HomeProduct from "./home/HomeProduct"
 import ProductDetails from "./product/ProductDetails"
 import CategoryView from "./category/CategoryView"
 
@@ -13,7 +14,11 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/" render={props => {
-                    return <img className="theClaw" src={require("./home/Ravenclaw.jpg")} alt="My common room" />
+                    return (
+                    <>
+                    <HomeProduct {...props} />
+                    </>
+                    )
                 }}
             />
 
@@ -37,7 +42,7 @@ const ApplicationViews = () => {
             />
 
             <Route
-                exact path="/categoryview/:categoryId(\d+)" render={props => {
+                exact path="/category/:categoryId(\d+)" render={props => {
                     let categoryId = +props.match.params.categoryId
                     return <CategoryView {...props} categoryId={categoryId} />
                 }}
