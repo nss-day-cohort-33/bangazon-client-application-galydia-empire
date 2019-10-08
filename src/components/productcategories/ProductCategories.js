@@ -4,7 +4,6 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
   const getCategories = () => {
@@ -42,14 +41,14 @@ const ProductCategories = () => {
             return (
               <div>
                 <h3>
-                  {item.name} (
+                {item.name} (
                   {
                     item.product_set.map(item => {
-                      return <div>{item.name}</div>;
+                      return <ul>{item.name}</ul>;
                     }).length
                   }
                   )
-                {/* </h3>
+                </h3>
                 <div>
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
@@ -60,7 +59,7 @@ const ProductCategories = () => {
                     );
                   })}
                 </div>
-              </div> */}
+              </div>
             );
           })}
       </div>
