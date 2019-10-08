@@ -33,7 +33,8 @@ const HomeProduct = props => {
                 }
             })
                 .then(response => response.json())
-                .then(setProducts)
+                .then((response) =>
+                setProducts(response.reverse()))
         }
     }
     useEffect(getProductsQuantity, [])
@@ -41,13 +42,13 @@ const HomeProduct = props => {
     return (
         <>
         {products.length > 0 ?
-            <article className="productList">
-            {
-                products.map(product =>{
-                    return( <Product key={product.id} product={product} /> )
-                })
-            }
-            </article>
+                <article className="productList">
+                {
+                        products.map(product =>{
+                                return( <Product key={product.id} product={product} /> )
+                        })
+                }
+                </article>
         : ""}
         </>
     )

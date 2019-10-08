@@ -4,9 +4,7 @@ import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
 import HomeProduct from "./home/HomeProduct"
-// import ProductList from "./home/ProductList"
-// import MyItinerary from "./home/MyItinerary"
-
+import ProductDetails from "./product/ProductDetails"
 
 const ApplicationViews = () => {
     return (
@@ -33,17 +31,12 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-
-            {/* <Route
-                path="/products" render={props => {
-                    return (
-                        <>
-                            <h1>Products</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
+            <Route
+                exact path="/product/:productId(\d+)" render={props => {
+                    let productId = +props.match.params.productId
+                    return <ProductDetails {...props} productId={productId} />
                 }}
-            /> */}
+            />
 
             {/* <Route
                 path="/myprofile" render={props => {
