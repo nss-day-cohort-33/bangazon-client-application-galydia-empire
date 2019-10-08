@@ -1,8 +1,8 @@
-import { Route } from "react-router-dom"
+import { Route, withRouter } from "react-router-dom"
 import React from "react"
-import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import ProductCategories from "./productcategories/ProductCategories"
 import HomeProduct from "./home/HomeProduct"
 import ProductDetails from "./product/ProductDetails"
 import CategoryView from "./category/CategoryView"
@@ -11,7 +11,6 @@ import CategoryView from "./category/CategoryView"
 const ApplicationViews = () => {
     return (
         <React.Fragment>
-
             <Route
                 exact path="/" render={props => {
                     return (
@@ -48,26 +47,13 @@ const ApplicationViews = () => {
                 }}
             />
 
-            {/* <Route
-                path="/myprofile" render={props => {
-                    return (
-                        <>
-                            <h1>My Profile</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
-                }}
-            /> */}
-
             <Route
-                path="/paymenttypes" render={props => {
-                    return (
-                        <h1>Pay Me</h1>
-                    )
+                path="/productcategories" render={props => {
+                    return <ProductCategories {...props} />
                 }}
-            />
+                />
 
-        </React.Fragment>
+                </React.Fragment>
     )
 }
 

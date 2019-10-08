@@ -40,7 +40,7 @@ const CategoryView = props => {
         <>
         {products.length > 0 ?
                 <article className="productList">
-                    <h1>Category</h1>
+                    <h1>1</h1>
                 {
                         products.map(product =>{
                                 return( <Product key={product.id} product={product} /> )
