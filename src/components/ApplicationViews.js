@@ -3,7 +3,8 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
-// import ParkExplorer from "./home/ParkExplorer"
+import HomeProduct from "./home/HomeProduct"
+// import ProductList from "./home/ProductList"
 // import MyItinerary from "./home/MyItinerary"
 
 
@@ -13,7 +14,11 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/" render={props => {
-                    return <img className="theClaw" src={require("./home/Ravenclaw.jpg")} alt="My common room" />
+                    return (
+                    <>
+                    <HomeProduct {...props} />
+                    </>
+                    )
                 }}
             />
 
