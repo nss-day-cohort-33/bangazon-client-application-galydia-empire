@@ -3,9 +3,8 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
-// import ParkExplorer from "./home/ParkExplorer"
-// import MyItinerary from "./home/MyItinerary"
-
+import HomeProduct from "./home/HomeProduct"
+import ProductDetails from "./product/ProductDetails"
 
 const ApplicationViews = () => {
     return (
@@ -13,7 +12,11 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/" render={props => {
-                    return <img className="theClaw" src={require("./home/Ravenclaw.jpg")} alt="My common room" />
+                    return (
+                    <>
+                    <HomeProduct {...props} />
+                    </>
+                    )
                 }}
             />
 
@@ -28,17 +31,12 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-
-            {/* <Route
-                path="/products" render={props => {
-                    return (
-                        <>
-                            <h1>Products</h1>
-                            <img className="swings" src={require("./home/swings.jpeg")} alt="My Dog" />
-                        </>
-                    )
+            <Route
+                exact path="/product/:productId(\d+)" render={props => {
+                    let productId = +props.match.params.productId
+                    return <ProductDetails {...props} productId={productId} />
                 }}
-            /> */}
+            />
 
             {/* <Route
                 path="/myprofile" render={props => {
