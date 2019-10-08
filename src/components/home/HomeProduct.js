@@ -40,13 +40,16 @@ const HomeProduct = props => {
 
     return (
         <>
-        <article className="productList">
+        {products.length > 0 ?
+            <article className="productList">
             {
-                products.map(product => {
-                return <Product key={product.id} product={product} />})
+                products.map(product =>{
+                    return( <Product key={product.id} product={product} /> )
+                })
             }
-        </article>
-    </>
+            </article>
+        : ""}
+        </>
     )
 }
 
