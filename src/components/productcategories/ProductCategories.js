@@ -49,7 +49,7 @@ const ProductCategories = () => {
                     }).length
                   }
                   )
-                </h3>
+                {/* </h3>
                 <div>
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
@@ -60,7 +60,7 @@ const ProductCategories = () => {
                     );
                   })}
                 </div>
-              </div>
+              </div> */}
             );
           })}
       </div>
