@@ -19,84 +19,97 @@ const SellProduct = props => {
         .then(setCategoryList)
     }, [])
 
+    const categorySelection = (select) => {
+        if(select.options[select.selectedIndex].value == ""){
+            alert("Select A Category Please");
+      }
+    }
     return (
         <>
-                <h2>Add A Product to Sell</h2>
-                <form>
+                <div>
+                    <form>
+                        <h2>Add A Product to Sell</h2>
+                        <fieldset className="form-group">
+                            <label htmlFor="productName">Product Name</label>
+                            <input
+                            type="text"
+                            required
+                            className="form-control"
 
+                            id="productName"
+                            placeholder="Product Name"
+                            />
+                            </fieldset>
+                            <fieldset className="form-group">
+                            <label htmlFor="description">Description</label>
+                            <input
+                            type="textarea"
+                            required
+                            className="form-control"
 
-                    <fieldset className="form-group">
-                    <label htmlFor="productName">Product Name</label>
-                    <input
-                    type="text"
-                    required
-                    className="form-control"
+                            id="description"
+                            placeholder="Describe Your Product"
+                            />
+                            </fieldset>
+                            <fieldset className="form-group">
+                            <label htmlFor="quantity">Quantity</label>
+                            <input
+                            type="number"
+                            name= "quantity"
+                            required
+                            className="form-control"
+                            id="quantity"
+                            placeholder="Quantity"
+                            />
+                            </fieldset>
+                            <fieldset className="form-group">
+                            <label htmlFor="price">Price</label>
+                            <input
+                            type="number"
+                            name= "price"
+                            required
+                            className="form-control"
+                            id="price"
+                            placeholder="Price"
+                            />
+                            </fieldset>
+                            <fieldset className="form-group">
+                            <label htmlFor="location">Location</label>
+                            <input
+                            type="text"
+                            name= "location"
+                            required
+                            className="form-control"
+                            id="location"
+                            placeholder="location"
+                            />
+                            </fieldset>
+                                <fieldset>
+                                    <label htmlFor="category">Category:  </label>
 
-                    id="productName"
-                    placeholder="Product Name"
-                    />
-                    </fieldset>
-                    <fieldset className="form-group">
-                    <label htmlFor="description">Description</label>
-                    <input
-                    type="textarea"
-                    required
-                    className="form-control"
+                                    <select onChange={() => categorySelection()} id = "category-name" name="category" required placeholder="Category">
+                                        <option value="">Please select a category</option>
+                            {
+                                        categoryList.map((category) => {
+                                            return (
+                                                <option value={category.id}>
+                                                    {category.name}
+                                                </option>
+                                            )
 
-                    id="description"
-                    placeholder="Describe Your Product"
-                    />
-                    </fieldset>
-                    <fieldset className="form-group">
-                    <label htmlFor="quantity">Quantity</label>
-                    <input
-                    type="number"
-                    name= "quantity"
-                    required
-                    className="form-control"
-                    id="quantity"
-                    placeholder="Quantity"
-                    />
-                    </fieldset>
-                    <fieldset className="form-group">
-                    <label htmlFor="price">Price</label>
-                    <input
-                    type="number"
-                    name= "price"
-                    required
-                    className="form-control"
-                    id="price"
-                    placeholder="Price"
-                    />
-                    </fieldset>
-                    <fieldset className="form-group">
-                    <label htmlFor="location">Location</label>
-                    <input
-                    type="text"
-                    name= "location"
-                    required
-                    className="form-control"
-                    id="location"
-                    placeholder="location"
-                    />
-                    </fieldset>
-                    <fieldset>
-                    <label for="category">Category: </label>
-                    <select name="category" required placeholder="Category">
-                        <option>
-
-                        </option>
-                    </select>
-                    </fieldset>
-                    <button
-                    type="submit"
-                    // onClick={this.constructNewTask}
-                    className="btn btn-primary"
-                    >
-                    Sell Product
-                    </button>
-
-                </form>
+                                        })
+                                    }
+                                    </select>
+                                </fieldset>
+                            <button
+                            type="submit"
+                            // onClick={this.constructNewTask}
+                            className="btn btn-primary"
+                            >
+                            Sell Product
+                            </button>
+                    </form>
+                    </div>
             </>
     )
 }
