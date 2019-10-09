@@ -29,7 +29,8 @@ const ProductCategories = () => {
     <>
       <h2>ProductCategories</h2>
       <div>
-          {/* filters categories for ones with at least one product so that categories with no products will display.  */}
+          {/* filters categories for ones with at least one product so
+         that categories with no products will display.  */}
         {categories
           .filter(
             category =>

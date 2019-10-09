@@ -14,19 +14,25 @@ const PaymentTypeForm = props => {
 
 
   const addPaymentType = () => {
+
     if (isAuthenticated()) {
+        let today = new Date()
+        let dd = today.getDate()
+        let mm = today.getMonth()+1
+        let yyyy = today.getFullYear()
+
       fetch("http://localhost:8000/paymenttypes", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
+        "method": "POST",
+        "headers": {
+          "Accept": "application/json",
           "Content-Type": "application/json",
-          Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+          "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
         },
-        body: JSON.stringify({
-          merchant_name: merchant.current.value,
-          account_number: accountNumber.current.value,
-          expiration_date: expireDate,
-          created_at: createDate.current.value
+        "body": JSON.stringify({
+          "merchant_name": merchant.current.value,
+          "account_number": accountNumber.current.value,
+          "expiration_date": expireDate.current.value,
+          "created_at": `${yyyy}-${mm}-${dd}`
         })
       })
         .then(response => response.json())
@@ -38,11 +44,10 @@ const PaymentTypeForm = props => {
   };
 
 
-
 return (
     <>
       <h1>Choose a Payment Option</h1>
-      <form className="categoryList" onSubmit={(e) => {
+      <form className="paymenttype" onSubmit={(e) => {
         e.preventDefault()
         addPaymentType()
       }}>
