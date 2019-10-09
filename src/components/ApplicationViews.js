@@ -1,60 +1,96 @@
-import { Route, withRouter } from "react-router-dom"
-import React from "react"
-import Register from "./auth/Register"
-import Login from "./auth/Login"
-import ProductCategories from "./productcategories/ProductCategories"
-import HomeProduct from "./home/HomeProduct"
-import ProductDetails from "./product/ProductDetails"
+import { Route, withRouter, Redirect } from "react-router-dom";
+import React from "react";
+import useSimpleAuth from "../hooks/ui/useSimpleAuth";
+import Register from "./auth/Register";
+import Login from "./auth/Login";
+import ProductCategories from "./productcategories/ProductCategories";
+import HomeProduct from "./home/HomeProduct";
+import SellProduct from "./home/SellProduct";
+import ProductDetails from "./product/ProductDetails";
+import Profile from "./profile/Profile";
+import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
 import CategoryView from "./category/CategoryView"
 
-
 const ApplicationViews = () => {
-    return (
-        <React.Fragment>
-            <Route
-                exact path="/" render={props => {
-                    return (
-                    <>
-                    <HomeProduct {...props} />
-                    </>
-                    )
-                }}
-            />
+  const { isAuthenticated } = useSimpleAuth();
 
-            <Route
-                path="/register" render={props => {
-                    return <Register {...props} />
-                }}
-            />
+  return (
+    <React.Fragment>
+      <Route
+        exact
+        path="/"
+        render={props => {
+          return (
+            <>
+              <HomeProduct {...props} />
+            </>
+          );
+        }}
+      />
+      <Route
+        path="/register"
+        render={props => {
+          return <Register {...props} />;
+        }}
+      />
 
-            <Route
-                path="/login" render={props => {
-                    return <Login {...props} />
-                }}
-            />
+      <Route
+        path="/login"
+        render={props => {
+          return <Login {...props} />;
+        }}
+      />
 
-            <Route
-                exact path="/product/:productId(\d+)" render={props => {
-                    let productId = +props.match.params.productId
-                    return <ProductDetails {...props} productId={productId} />
-                }}
-            />
+      <Route
+        exact
+        path="/profile"
+        render={props => {
+          if (isAuthenticated()) return <Profile />;
+          else return <Redirect to="/login" />;
+        }}
+      />
 
-            <Route
-                exact path="/category/:categoryId(\d+)" render={props => {
-                    let categoryId = +props.match.params.categoryId
-                    return <CategoryView {...props} categoryId={categoryId} />
-                }}
-            />
+      <Route
+        exact
+        path="/payment/create"
+        render={props => {
+          if (isAuthenticated()) return <PaymentTypeForm {...props} />;
+          else return <Redirect to="/login" />;
+        }}
+      />
 
-            <Route
-                path="/productcategories" render={props => {
-                    return <ProductCategories {...props} />
-                }}
-                />
+      <Route
+        path="/sell-product"
+        render={props => {
+          return <SellProduct {...props} />;
+        }}
+      />
 
-                </React.Fragment>
-    )
-}
+      <Route
+        path="/productcategories"
+        render={props => {
+          return <ProductCategories {...props} />;
+        }}
+      />
 
-export default withRouter(ApplicationViews)
+      <Route
+        exact
+        path="/product/:productId(\d+)"
+        render={props => {
+          let productId = +props.match.params.productId;
+          return <ProductDetails {...props} productId={productId} />;
+        }}
+      />
+
+        <Route
+            exact path="/category/:categoryId(\d+)" render={props => {
+                let categoryId = +props.match.params.categoryId
+                return <CategoryView {...props} categoryId={categoryId} />
+            }}
+        />
+
+    </React.Fragment>
+  );
+};
+
+export default withRouter(ApplicationViews);
