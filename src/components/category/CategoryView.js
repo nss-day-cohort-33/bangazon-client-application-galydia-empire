@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react"
 import Product from "../cards/Product"
 import "./CategoryView.css"
 
-// by MCFlyJo Hacking the Planet
+
+// Category View Super Function
+// Author: Matthew Caldwell
+// Purpose:  Allows a user to view products by category
+//Methods: Get & Render
+
 const CategoryView = props => {
 
     //Creat a state variable for single product - useState()
@@ -12,7 +17,7 @@ const CategoryView = props => {
 
     const getCategoryView = (categoryId) => {
         // Fetch the data from localhost:8000/product matching category id
-        fetch(`http://localhost:8000/products?orderBy=product_type_id&equalTo=${categoryId}`, {
+        fetch(`http://localhost:8000/products?category=${categoryId}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -38,7 +43,7 @@ const CategoryView = props => {
         <>
         {catProducts.length > 0 ?
                 <article className="productList">
-                    <h1>{catProducts[0].product_type.name}</h1>
+                    <h1>Category view: {catProducts[0].product_type.name}</h1>
                 {
                         catProducts.map(product =>{
                                 return( <Product key={product.id} product={product} /> )
