@@ -6,13 +6,13 @@ import "./CategoryView.css"
 const CategoryView = props => {
 
     //Creat a state variable for single product - useState()
-    const [products, setProducts] = useState([])
+    const [catProducts, setCatProducts] = useState([])
     //Create a state variable for quantity editting later - useState()
     // const [currentProduct, setCurrentProduct] = useState({})
 
     const getCategoryView = (categoryId) => {
         // Fetch the data from localhost:8000/product matching category id
-        fetch(`http://localhost:8000/products?orderBy="product_type_id"&equalTo="${categoryId}"`, {
+        fetch(`http://localhost:8000/products?orderBy=product_type_id&equalTo=${categoryId}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -23,9 +23,7 @@ const CategoryView = props => {
             .then(response => response.json())
 
             // Store itinerary items in state variable
-            .then((theProducts) => {
-                setProducts(theProducts)
-            }, [])
+            .then(setCatProducts)
 
 
     }
@@ -38,11 +36,11 @@ const CategoryView = props => {
 
     return (
         <>
-        {products.length > 0 ?
+        {catProducts.length > 0 ?
                 <article className="productList">
-                    <h1>Here's all the products in the category you just clicked!</h1>
+                    <h1>{catProducts[0].product_type.name}</h1>
                 {
-                        products.map(product =>{
+                        catProducts.map(product =>{
                                 return( <Product key={product.id} product={product} /> )
                         })
                 }

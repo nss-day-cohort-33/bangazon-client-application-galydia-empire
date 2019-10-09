@@ -39,13 +39,15 @@ const ProductCategories = () => {
               }).length >= 1
           )
           .map(item => {
+            let catId = +item.url.split("s/")[1];
             return (
               <div>
                 <h3>
-                {item.name} (
+                <Link to={`/category/${catId}`}>{item.name}</Link> (
                   {
                     item.product_set.map(item => {
-                      return <ul>{item.name}</ul>;
+                      return <ul>{item.name}</ul>
+                      ;
                     }).length
                   }
                   )
