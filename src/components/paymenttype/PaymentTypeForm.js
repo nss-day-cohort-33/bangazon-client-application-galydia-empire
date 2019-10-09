@@ -37,7 +37,8 @@ const PaymentTypeForm = props => {
         .then(response => response.json())
         .then(() => {
           console.log("there");
-          props.history.push("/payment/options");
+          alert("payment method has been added")
+          props.history.push("/profile");
         });
     }
   };
