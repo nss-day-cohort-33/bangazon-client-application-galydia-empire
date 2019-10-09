@@ -8,7 +8,7 @@ const ProductCategories = () => {
 
   const getCategories = () => {
     {
-      fetch(`http://localhost:8000/producttypes`, {
+      fetch("http://localhost:8000/producttypes", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -39,14 +39,16 @@ const ProductCategories = () => {
               }).length >= 1
           )
           .map(item => {
+            let catId = +item.url.split("s/")[1];
             return (
               <div>
             {/* renders product category name */}
                 <h3>
-                {item.name} (
+                <Link to={`/category/${catId}`}>{item.name}</Link> (
                   {
                     item.product_set.map(item => {
-                      return <ul>{item.name}</ul>;
+                      return <ul>{item.name}</ul>
+                      ;
                     }).length
                   }
                   )

@@ -5,9 +5,11 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import ProductCategories from "./productcategories/ProductCategories";
 import HomeProduct from "./home/HomeProduct";
+import SellProduct from "./home/SellProduct";
 import ProductDetails from "./product/ProductDetails";
 import Profile from "./profile/Profile";
 import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
+import CategoryView from "./category/CategoryView"
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
@@ -79,6 +81,14 @@ const ApplicationViews = () => {
           return <ProductDetails {...props} productId={productId} />;
         }}
       />
+
+        <Route
+            exact path="/category/:categoryId(\d+)" render={props => {
+                let categoryId = +props.match.params.categoryId
+                return <CategoryView {...props} categoryId={categoryId} />
+            }}
+        />
+
     </React.Fragment>
   );
 };

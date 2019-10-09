@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Product from "./Product"
+import Product from "../cards/Product"
 import "./productlist.css"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
@@ -24,7 +24,7 @@ const HomeProduct = props => {
     // useEffect(getProducts, [])
     const getProductsQuantity = () => {
         if (isAuthenticated()) {
-            fetch(`http://localhost:8000/products?quantity=20`, {
+            fetch("http://localhost:8000/products?quantity=20", {
 
                 "method": "GET",
                 "headers": {
