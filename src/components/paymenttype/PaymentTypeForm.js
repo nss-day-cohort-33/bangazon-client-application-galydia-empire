@@ -1,6 +1,10 @@
 import React, { useRef } from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
+// Author: Scott Silver
+// Purpose: Render form when add payment option affordance is clicked
+// by user and POST paymenttype to database when user clicks submit.
+
 const addPaymentType = () => {
   const merchant = useRef()
   const accountNumber = useRef()
