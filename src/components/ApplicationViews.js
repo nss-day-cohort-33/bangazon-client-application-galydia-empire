@@ -8,6 +8,7 @@ import HomeProduct from "./home/HomeProduct";
 import ProductDetails from "./product/ProductDetails";
 import Profile from "./profile/Profile";
 import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
+import SellProduct from "./home/SellProduct"
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
