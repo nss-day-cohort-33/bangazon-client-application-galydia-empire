@@ -3,6 +3,10 @@ import {Link} from "react-router-dom"
 
 const Product = props => {
 
+    //Author: Sam Birky
+    //Purpose: Show products to user as a card with name displayed
+    //Methods: Takes one product objects and displays them to the DOM as a card and link that sends user to the product details page
+
     return (
         <>
             <section className="productList">
