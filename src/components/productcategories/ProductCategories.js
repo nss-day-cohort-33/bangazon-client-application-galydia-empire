@@ -29,6 +29,7 @@ const ProductCategories = () => {
     <>
       <h2>ProductCategories</h2>
       <div>
+          {/* filters categories for ones with at least one product so that categories with no products will display.  */}
         {categories
           .filter(
             category =>
@@ -50,7 +51,7 @@ const ProductCategories = () => {
                   )
                 </h3>
                 {/* renders prouct name by category and uses slice to select indices 0,1,2 in the array */}
-                <div>
+                <ul>
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
                     return (
@@ -59,7 +60,7 @@ const ProductCategories = () => {
                       </div>
                     );
                   })}
-                </div>
+                </ul>
               </div>
             );
           })}
