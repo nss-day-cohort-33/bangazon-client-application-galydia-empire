@@ -14,22 +14,26 @@ const NavBar = props => {
             Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/productcategories">
-            Product Categories
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/sell-product">
-            Sell A Product
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/profile">
-            Profile
-          </Link>
-        </li>
         {isAuthenticated() ? (
+        <>
+        <li className="nav-item">
+            <Link className="nav-link" to="/productcategories">
+              Product Categories
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/sell-product">
+              Sell A Product
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
+          </li>
+
           <li className="nav-item">
             <button
               className="nav-link fakeLink"
@@ -43,7 +47,7 @@ const NavBar = props => {
               Logout
             </button>
           </li>
-        ) : (
+        </>) : (
           <>
             <li className="nav-item">
               <Link className="nav-link" to="/login">
