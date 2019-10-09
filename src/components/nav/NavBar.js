@@ -15,6 +15,12 @@ const NavBar = props => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/productcategories">Product Categories</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/sell-product">Sell A Product</Link>
+                </li>
+                {/* <li className="nav-item">
+                    <Link className="nav-link" to="/myitinerary">My Itinerary</Link>
+                </li> */}
                 {
                     isAuthenticated() ?
                         <li className="nav-item">
@@ -29,6 +35,7 @@ const NavBar = props => {
                             >Logout</button>
                         </li> :
                         <>
+
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login</Link>
                         </li>
