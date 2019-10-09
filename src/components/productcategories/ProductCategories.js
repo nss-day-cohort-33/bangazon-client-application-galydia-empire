@@ -8,7 +8,6 @@ const ProductCategories = () => {
 
   const getCategories = () => {
     {
-      console.log("Joe maybe won bet");
       fetch(`http://localhost:8000/producttypes`, {
         method: "GET",
         headers: {
@@ -30,16 +29,19 @@ const ProductCategories = () => {
     <>
       <h2>ProductCategories</h2>
       <div>
+          {/* filters categories for ones with at least one product so
+         that categories with no products will display.  */}
         {categories
           .filter(
-            item =>
-              item.product_set.map(item => {
-                return <div>{item.name}</div>;
+            category =>
+              category.product_set.map(cat => {
+                return <div>{cat.name}</div>;
               }).length >= 1
           )
           .map(item => {
             return (
               <div>
+            {/* renders product category name */}
                 <h3>
                 {item.name} (
                   {
@@ -49,16 +51,17 @@ const ProductCategories = () => {
                   }
                   )
                 </h3>
-                <div>
+                {/* renders prouct name by category and uses slice to select indices 0,1,2 in the array */}
+                <ul>
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
                     return (
                       <div>
-                        <Link to={`/productDetail/${itemId}`}>{item.name}</Link>
+                        <Link to={`/product/${itemId}`}>{item.name}</Link>
                       </div>
                     );
                   })}
-                </div>
+                </ul>
               </div>
             );
           })}
