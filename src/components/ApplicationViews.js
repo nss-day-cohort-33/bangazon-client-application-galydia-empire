@@ -1,5 +1,6 @@
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import React from "react";
+import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import ProductCategories from "./productcategories/ProductCategories";
@@ -8,6 +9,9 @@ import ProductDetails from "./product/ProductDetails";
 import Profile from "./profile/Profile"
 
 const ApplicationViews = () => {
+
+        const { isAuthenticated } = useSimpleAuth()
+
   return (
     <React.Fragment>
       <Route
