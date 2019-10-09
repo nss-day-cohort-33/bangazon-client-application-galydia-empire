@@ -31,8 +31,7 @@ const PaymentTypeForm = props => {
         "body": JSON.stringify({
           "merchant_name": merchant.current.value,
           "account_number": accountNumber.current.value,
-          "expiration_date": expireDate.current.value,
-          "created_at": `${yyyy}-${mm}-${dd}`
+          "expiration_date": expireDate.current.value
         })
       })
         .then(response => response.json())
@@ -61,9 +60,9 @@ return (
         </fieldset>
         <fieldset>
           <label htmlFor="expire-date">Expiration Date:</label>
-          <input type="month" ref={expireDate} name="expire-date" min={new Date().toISOString().slice(0,7)} required></input>
+          <input type="date" ref={expireDate} name="expire-date" min={new Date().toISOString().slice(0,7)} required></input>
         </fieldset>
-        <input type="date" ref={createDate} name="expire-date" defaultValue={new Date().toISOString().slice(0,10)} hidden></input>
+        <input type="date" ref={createDate} name="create-date" defaultValue={new Date().toISOString().slice(0,10)} hidden></input>
         <button type="submit">Add Payment</button>
       </form>
     </>
