@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from "react"
+
 // import getProduct from "../product/ProductDetails"
 
 // Author: Jeff Hill
@@ -30,11 +31,6 @@ const SellProduct = props => {
         .then(setCategoryList)
     }, [])
 
-    // const categorySelection = (select) => {
-    //     if(select.options[select.selectedIndex].value == ""){
-    //         alert("Select A Category Please");
-    //   }
-    // }
 
     const addNewProductForSale = (event) => {
         event.preventDefault()
@@ -42,10 +38,10 @@ const SellProduct = props => {
             alert("Please select a Product Category")
         }
         else {
-        var today = new Date();
-        var dd = today.getDate()
-        var mm = today.getMonth()+1
-        var yyyy = today.getFullYear()
+        let today = new Date();
+        let dd = today.getDate()
+        let mm = today.getMonth()+1
+        let yyyy = today.getFullYear()
 
         fetch('http://localhost:8000/products', {
             "method": "POST",
@@ -68,7 +64,6 @@ const SellProduct = props => {
             .then(response => response.json())
             .then(() => {
                 console.log("Added")
-                // props.getProduct()
                 alert("Your Product Has Been Added")
                 props.history.push("/")
             })
@@ -77,6 +72,7 @@ const SellProduct = props => {
 
     return (
         <>
+        {/* Form for adding a new product to sell */}
                 <div>
                     <form>
                         <h2>Add A Product to Sell</h2>
@@ -144,8 +140,10 @@ const SellProduct = props => {
                                     <label htmlFor="category">Category:  </label>
 
                                     <select ref={category_value} id = "category-name" name="category" required placeholder="Category">
+                                        {/* Set default option for category dropdown */}
                                         <option value="">Please select a category</option>
                             {
+                                // Map over the state of product types i.e. categories and set the id and name for each option in the category dropdown
                                         categoryList.map((category) => {
                                             return (
                                                 <option value={category.id}>
