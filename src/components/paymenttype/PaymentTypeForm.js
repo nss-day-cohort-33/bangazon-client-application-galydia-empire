@@ -12,6 +12,7 @@ const PaymentTypeForm = props => {
   const createDate = useRef();
   const { isAuthenticated } = useSimpleAuth();
 
+
   const addPaymentType = () => {
     if (isAuthenticated()) {
       fetch("http://localhost:8000/paymenttypes", {
@@ -35,8 +36,34 @@ const PaymentTypeForm = props => {
         });
     }
   };
-};
 
+
+
+return (
+    <>
+      <h1>Choose a Payment Option</h1>
+      <form className="categoryList" onSubmit={(e) => {
+        e.preventDefault()
+        addPaymentType()
+      }}>
+        <fieldset>
+          <label htmlFor="merchant">Merchant Name:</label>
+          <input type="text" ref={merchant} name="merchant" required></input>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="account-number">Account Number:</label>
+          <input type="text" ref={accountNumber} name="account-number" required></input>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="expire-date">Expiration Date:</label>
+          <input type="month" ref={expireDate} name="expire-date" min={new Date().toISOString().slice(0,7)} required></input>
+        </fieldset>
+        <input type="date" ref={createDate} name="expire-date" defaultValue={new Date().toISOString().slice(0,10)} hidden></input>
+        <button type="submit">Add Payment</button>
+      </form>
+    </>
+  )
+};
 
 
 export default PaymentTypeForm;
