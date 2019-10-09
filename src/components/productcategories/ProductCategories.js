@@ -8,7 +8,6 @@ const ProductCategories = () => {
 
   const getCategories = () => {
     {
-      console.log("Joe maybe won bet");
       fetch(`http://localhost:8000/producttypes`, {
         method: "GET",
         headers: {
@@ -54,7 +53,7 @@ const ProductCategories = () => {
                     let itemId = +item.url.split("s/")[1];
                     return (
                       <div>
-                        <Link to={`/productDetail/${itemId}`}>{item.name}</Link>
+                        <Link to={`/product/${itemId}`}>{item.name}</Link>
                       </div>
                     );
                   })}
