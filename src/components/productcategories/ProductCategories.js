@@ -34,6 +34,7 @@ const ProductCategories = () => {
           .filter(
             item =>
               item.product_set.map(item => {
+
                 return <div>{item.name}</div>;
               }).length >= 1
           )
