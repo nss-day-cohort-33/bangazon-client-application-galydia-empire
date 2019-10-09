@@ -31,14 +31,15 @@ const ProductCategories = () => {
       <div>
         {categories
           .filter(
-            item =>
-              item.product_set.map(item => {
-                return <div>{item.name}</div>;
+            category =>
+              category.product_set.map(cat => {
+                return <div>{cat.name}</div>;
               }).length >= 1
           )
           .map(item => {
             return (
               <div>
+            {/* renders product category name */}
                 <h3>
                 {item.name} (
                   {
@@ -48,6 +49,7 @@ const ProductCategories = () => {
                   }
                   )
                 </h3>
+                {/* renders prouct name by category and uses slice to select indices 0,1,2 in the array */}
                 <div>
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
