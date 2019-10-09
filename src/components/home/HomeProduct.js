@@ -7,21 +7,11 @@ const HomeProduct = props => {
     const [products, setProducts] = useState([])
     const { isAuthenticated } = useSimpleAuth()
 
-    // const getProducts = () => {
-    //     if (isAuthenticated()) {
-    //         fetch('http://localhost:8000/products', {
 
-    //             "method": "GET",
-    //             "headers": {
-    //                 "Accept": "application/json",
-    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-    //             }
-    //         })
-    //             .then(response => response.json())
-    //             .then(setProducts)
-    //     }
-    // }
-    // useEffect(getProducts, [])
+    //Author: Sam Birky
+    //Purpose: Fetches 20 products to user as a card with name displayed
+    //Methods: Maps over 20 product objects and displays it to the DOM as a link that sends user to the product details page. Reverses those 20 products in setProducts to display newest to oldest
+
     const getProductsQuantity = () => {
         if (isAuthenticated()) {
             fetch(`http://localhost:8000/products?quantity=20`, {
@@ -55,3 +45,19 @@ const HomeProduct = props => {
 }
 
 export default HomeProduct
+
+// const getProducts = () => {
+    //     if (isAuthenticated()) {
+    //         fetch('http://localhost:8000/products', {
+
+    //             "method": "GET",
+    //             "headers": {
+    //                 "Accept": "application/json",
+    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+    //             }
+    //         })
+    //             .then(response => response.json())
+    //             .then(setProducts)
+    //     }
+    // }
+    // useEffect(getProducts, [])
