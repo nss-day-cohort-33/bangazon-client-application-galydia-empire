@@ -10,6 +10,8 @@ import ProductDetails from "./product/ProductDetails";
 import Profile from "./profile/Profile";
 import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
 import CategoryView from "./category/CategoryView"
+import MySettings from "./settings/MySettings";
+import PaymentTypes from "./paymenttype/PaymentTypes";
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
@@ -46,6 +48,23 @@ const ApplicationViews = () => {
         path="/profile"
         render={props => {
           if (isAuthenticated()) return <Profile />;
+          else return <Redirect to="/login" />;
+        }}
+      />
+
+        <Route
+        exact
+        path="/settings"
+        render={props => {
+          if (isAuthenticated()) return <MySettings />;
+          else return <Redirect to="/login" />;
+        }}
+      />
+        <Route
+        exact
+        path="/paymenttypes"
+        render={props => {
+          if (isAuthenticated()) return <PaymentTypes />;
           else return <Redirect to="/login" />;
         }}
       />
