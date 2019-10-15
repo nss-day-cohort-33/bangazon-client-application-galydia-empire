@@ -12,6 +12,7 @@ import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
 import CategoryView from "./category/CategoryView"
 import MySettings from "./settings/MySettings";
 import PaymentTypes from "./paymenttype/PaymentTypes";
+import MyOrder from "./order/MyOrder";
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
@@ -52,7 +53,7 @@ const ApplicationViews = () => {
         }}
       />
 
-        <Route
+      <Route
         exact
         path="/settings"
         render={props => {
@@ -60,7 +61,7 @@ const ApplicationViews = () => {
           else return <Redirect to="/login" />;
         }}
       />
-        <Route
+      <Route
         exact
         path="/paymenttypes"
         render={props => {
@@ -86,6 +87,13 @@ const ApplicationViews = () => {
       />
 
       <Route
+        path="/my-order"
+        render={props => {
+          return <MyOrder {...props} />;
+        }}
+      />
+
+      <Route
         path="/productcategories"
         render={props => {
           return <ProductCategories {...props} />;
@@ -101,12 +109,12 @@ const ApplicationViews = () => {
         }}
       />
 
-        <Route
-            exact path="/category/:categoryId(\d+)" render={props => {
-                let categoryId = +props.match.params.categoryId
-                return <CategoryView {...props} categoryId={categoryId} />
-            }}
-        />
+      <Route
+        exact path="/category/:categoryId(\d+)" render={props => {
+          let categoryId = +props.match.params.categoryId
+          return <CategoryView {...props} categoryId={categoryId} />
+        }}
+      />
 
     </React.Fragment>
   );
