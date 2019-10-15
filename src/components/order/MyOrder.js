@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
-// import "../home/productlist.css"
+// import "../home/orderlist.css"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 // import PaymentType from "./PaymentType"
 
 const MyOrder = props => {
-    const [paymenttypes, setPaymentTypes] = useState([])
+    const [orders, setOrders] = useState([])
     const { isAuthenticated } = useSimpleAuth()
 
 
@@ -12,9 +12,9 @@ const MyOrder = props => {
     //Purpose: Shows an existing order for the user and allows them to cancel that order if they choose to do so.
     //Methods: Display an existing order and display all products for that order.
 
-    const getPaymentTypes = () => {
+    const getOrders = () => {
         if (isAuthenticated()) {
-            fetch("http://localhost:8000/paymenttypes", {
+            fetch("http://localhost:8000/orders", {
 
                 "method": "GET",
                 "headers": {
@@ -24,36 +24,33 @@ const MyOrder = props => {
             })
                 .then(response => response.json())
                 .then((response) =>
-                    setPaymentTypes(response))
+                    setOrders(response))
         }
     }
-    useEffect(getPaymentTypes, [])
+    useEffect(getOrders, [])
 
-    const deletePaymentType = (id) => {
-        fetch(`http://localhost:8000/paymenttypes/${id}`, {
+    const deleteOrder = (id) => {
+        fetch(`http://localhost:8000/orders/${id}`, {
             "method": "DELETE",
             "headers": {
                 "Accept": "application/json",
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-            .then(getPaymentTypes)
+            .then(getOrders)
     }
 
     return (
         <>
-            {paymenttypes.length > 0 ?
-                <article className="productList">
+            {orders.length > 0 ?
+                <article className="orderList">
                     {
-                        paymenttypes.map(paymenttype => {
-                            return <section className="productList">
-                                <h3>Merchant Name | {paymenttype.merchant_name}</h3>
-                                <h3>Account Number | {paymenttype.account_number}</h3>
-                                <h3>Expiration Date | {paymenttype.expiration_date}</h3>
-                                <h3>Created At | {paymenttype.created_at}</h3>
+                        orders.map(order => {
+                            return <section className="orderList">
+                                <h3>Order Number | {order.id}</h3>
                                 <button onClick={() => {
-                                    // console.log({paymenttype})
-                                    deletePaymentType(paymenttype.id)
+                                    console.log(order.id)
+                                    deleteOrder(order.id)
                                 }}>Delete</button>
                             </section>
                         })
