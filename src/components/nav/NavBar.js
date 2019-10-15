@@ -35,6 +35,12 @@ const NavBar = props => {
           </li>
 
           <li className="nav-item">
+            <Link className="nav-link" to="/settings">
+              My Settings
+            </Link>
+          </li>
+
+          <li className="nav-item">
             <button
               className="nav-link fakeLink"
               onClick={() => {
