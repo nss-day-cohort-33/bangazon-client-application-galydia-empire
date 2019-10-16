@@ -8,15 +8,16 @@ const HomeProduct = props => {
     const [products, setProducts] = useState([])
     const { isAuthenticated } = useSimpleAuth()
     const search_products = useRef()
+    let search_location = search_products.value
 
 
     //Author: Sam Birky
     //Purpose: Fetches 20 products to user as a card with name displayed
     //Methods: Maps over 20 product objects and displays it to the DOM as a link that sends user to the product details page. Reverses those 20 products in setProducts to display newest to oldest
 
-    const getProductsQuantity = (search) => {
+    const getProductsQuantity = () => {
         if (isAuthenticated()) {
-            fetch(`http://localhost:8000/products?location=${search}&quantity=20`, {
+            fetch(`http://localhost:8000/products?quantity=20`, {
 
                 "method": "GET",
                 "headers": {
@@ -41,8 +42,8 @@ const HomeProduct = props => {
         }}
         >
         <label htmlFor="search_products">Search for products by city</label><br></br>
-        <input type="search" id="search_input" value="search_input" ref={search_products} placeholder="City"/>
-        <Link to={`/location/`}><button id="search_input">Search</button></Link>
+        <input type="search" id="search_input"  ref={search_products} placeholder="City"/>
+        <Link to={`/location/${search_location}`}><button id="search_input">Search</button></Link>
         {/* </form> */}
         {products.length > 0 ?
                 <article className="productList">
