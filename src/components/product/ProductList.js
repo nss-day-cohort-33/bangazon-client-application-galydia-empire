@@ -35,7 +35,7 @@ const ProductList = props => {
                 <article className="productList">
                 {
                         products.map(product =>{
-                                return( <MyProductCard key={product.id} product={product} {...props} /> )
+                                return( <MyProductCard key={product.id} product={product} {...props} getProducts={getProducts}/> )
                         })
                 }
                 </article>

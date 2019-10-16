@@ -17,7 +17,7 @@ const MyProductCard = props => {
         })
             .then(() =>{
                 alert("Your Product Has Been Deleted")
-                props.history.push("/myproducts")
+                props.getProducts()
             })
     }
 
