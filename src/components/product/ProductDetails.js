@@ -46,8 +46,6 @@ const ProductDetails = props => {
         })
         .then(response => response.json())
         .then(() => {
-          console.log("Order?!");
-          alert("Order has been made")
           props.history.push("/orders");
 
         })
