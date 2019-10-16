@@ -15,58 +15,64 @@ const NavBar = props => {
           </Link>
         </li>
         {isAuthenticated() ? (
-        <>
-        <li className="nav-item">
-            <Link className="nav-link" to="/productcategories">
-              Product Categories
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/sell-product">
-              Sell A Product
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/settings">
-              My Settings
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <button
-              className="nav-link fakeLink"
-              onClick={() => {
-                logout();
-                props.history.push({
-                  pathname: "/"
-                });
-              }}
-            >
-              Logout
-            </button>
-          </li>
-        </>) : (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
+              <Link className="nav-link" to="/productcategories">
+                Product Categories
+            </Link>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Register
-              </Link>
+              <Link className="nav-link" to="/sell-product">
+                Sell A Product
+            </Link>
             </li>
-          </>
-        )}
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/my-order">
+                My Order
+            </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Profile
+            </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/settings">
+                My Settings
+            </Link>
+            </li>
+
+            <li className="nav-item">
+              <button
+                className="nav-link fakeLink"
+                onClick={() => {
+                  logout();
+                  props.history.push({
+                    pathname: "/"
+                  });
+                }}
+              >
+                Logout
+            </button>
+            </li>
+          </>) : (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+              </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Register
+              </Link>
+              </li>
+            </>
+          )}
       </ul>
     </nav>
   );

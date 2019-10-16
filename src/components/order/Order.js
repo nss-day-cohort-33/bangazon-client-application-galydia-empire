@@ -5,6 +5,7 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 const Order = props => {
     const [cart, setCart] = useState([])
     const [paytypes, setPaytypes] = useState([])
+    const [openOrder, setOpenOrder] = useState([])
     const { isAuthenticated } = useSimpleAuth()
     const payment_type_value = useRef()
 
@@ -42,6 +43,34 @@ const Order = props => {
     }
     useEffect(getPaymentTypes, [])
 
+    const getMyOrder = () => {
+        if (isAuthenticated()) {
+            fetch("http://localhost:8000/orders/current", {
+
+                "method": "GET",
+                "headers": {
+                    "Accept": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                }
+            })
+                .then(response => response.json())
+                .then((response) =>
+                    setOpenOrder(response))
+        }
+    }
+    useEffect(getMyOrder, [])
+
+    const deleteOrder = (id) => {
+        fetch(`http://localhost:8000/orders/${id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+            .then(props.history.push("/home"))
+    }
+
     return (
         <>
         <h1>My Open Order</h1>
@@ -69,7 +98,11 @@ const Order = props => {
                     </select>
                 </fieldset>
                 <button  onClick={() => console.log("Fuck You, Pay Me")}
-                    >FinishOrder</button>
+                >FinishOrder</button>
+                <button onClick={() => {
+                    console.log(openOrder)
+                    deleteOrder(openOrder.id)
+                }}>Cancel Order</button>
         </>
     )
 }
