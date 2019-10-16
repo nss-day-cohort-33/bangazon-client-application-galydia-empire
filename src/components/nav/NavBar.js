@@ -22,11 +22,11 @@ const NavBar = props => {
             </Link>
             </li>
 
-        <li className="nav-item">
-            <Link className="nav-link" to="/myproducts">
-              My Products
+            <li className="nav-item">
+              <Link className="nav-link" to="/myproducts">
+                My Products
             </Link>
-          </li>
+            </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/sell-product">
@@ -35,8 +35,8 @@ const NavBar = props => {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/my-order">
-                My Order
+              <Link className="nav-link" to="/my-account">
+                My Account
             </Link>
             </li>
 

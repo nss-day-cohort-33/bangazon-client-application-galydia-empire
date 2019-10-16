@@ -14,7 +14,7 @@ import MySettings from "./settings/MySettings";
 import PaymentTypes from "./paymenttype/PaymentTypes";
 import ProductList from "./product/ProductList"
 import Order from "./order/Order";
-import MyOrder from "./order/MyOrder";
+import MyAccount from "./order/MyAccount";
 
 
 const ApplicationViews = () => {
@@ -26,8 +26,8 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-              if(isAuthenticated()) return <HomeProduct {...props}  />;
-              else return <Redirect to="/login"/>
+          if (isAuthenticated()) return <HomeProduct {...props} />;
+          else return <Redirect to="/login" />
 
 
         }}
@@ -72,7 +72,7 @@ const ApplicationViews = () => {
         }}
       />
 
-        <Route
+      <Route
         exact
         path="/myproducts"
         render={props => {
@@ -103,13 +103,14 @@ const ApplicationViews = () => {
         render={props => {
           return <Order {...props} />;
         }}
-        />
+      />
 
-    <Route
-
-        path="/my-order"
+      <Route
+        exact
+        path="/my-account"
         render={props => {
-          return <MyOrder {...props} />;
+          if (isAuthenticated()) return <MyAccount {...props} />;
+          else return <Redirect to="/login" />;
         }}
       />
 
