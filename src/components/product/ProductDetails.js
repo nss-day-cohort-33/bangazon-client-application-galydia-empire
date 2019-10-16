@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 // import "./ProductDetails.css"
 
 // by MCFlyJo Hacking the Planet
 const ProductDetails = props => {
-
+    const { isAuthenticated } = useSimpleAuth();
     //Creat a state variable for single product - useState()
     const [product, setProduct] = useState([])
     //Create a state variable for quantity editting later - useState()
-    // const [currentProduct, setCurrentProduct] = useState({})
 
     const getProduct = (prodId) => {
         // Fetch the data from localhost:8000/product
@@ -26,44 +26,33 @@ const ProductDetails = props => {
                 setProduct(theProduct)
             }, [])
     }
-
-    // const deleteProduct = product => {
-    //     fetch(`http://localhost:8000/products/${product.id}`, {
-    //         "method": "DELETE",
-    //         "headers": {
-    //             "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-    //         }
-    //     })
-    //         .then(() => {
-    //             props.history.push({
-    //                 pathname: "/" //Where to go after product deleted. Home? tbd
-    //             })
-    //         })
-    // }
-
-// Creat useEffect()
+    // Creat useEffect()
     useEffect(() => {
         getProduct(props.productId)}, [])
 
-    // Rough draft of quantity update for later
-    // const updateProductQuantity = (quantity) => {
-    //     fetch(`http://localhost:8000/products/${currentProduct.id}`, {
-    //         "method": "PUT",
-    //         "headers": {
-    //             "Accept": "application/json",
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Token ${localStorage.getProduct("bangazon_token")}`
-    //         },
-    //         "body": JSON.stringify({
-    //             "quantity": quantity
-    //         })
-    //     })
-    //         .then(() => {
-    //             console.log("Updated!!!! YAY!!!!  🙌🏼")
-    //             toggleDialog(false)
-    //         })
-    //         .then(getProduct)
-    // }
+    const addToOrder = (prodId) => {
+        if (isAuthenticated()) {
+
+        fetch("http://localhost:8000/orders", {
+            "method": "POST",
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            },
+            "body": JSON.stringify({
+                "product_id": prodId
+            })
+        })
+        .then(response => response.json())
+        .then(() => {
+          console.log("Order?!");
+          alert("Order has been made")
+          props.history.push("/orders");
+
+        })
+    }}
+
 
     //creat HTML representation with JSX
     return (
@@ -75,14 +64,12 @@ const ProductDetails = props => {
             <h3>stock: {product.quantity}</h3>
             <h3>Price: ${product.price}</h3>
 
-                    <button onClick={() => {
-                        // setCurrentProduct(product)
-                        console.log("well on the way to adding to order!")
-                        // toggleDialog(true)
-                    }}>Add to Order</button>
+                <button id={product.id} onClick={() => addToOrder(product.id)}
+                    >Add to Order</button>
         </div>
         </>
     )
 }
+
 
 export default ProductDetails
