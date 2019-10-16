@@ -29,16 +29,6 @@ const MyOrder = props => {
     }
     useEffect(getOrders, [])
 
-    const deleteOrder = (id) => {
-        fetch(`http://localhost:8000/orders/${id}`, {
-            "method": "DELETE",
-            "headers": {
-                "Accept": "application/json",
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-            }
-        })
-            .then(getOrders)
-    }
 
     return (
         <>
@@ -48,10 +38,6 @@ const MyOrder = props => {
                         orders.map(order => {
                             return <section className="orderList">
                                 <h3>Order Number | {order.id}</h3>
-                                <button onClick={() => {
-                                    console.log(order.id)
-                                    deleteOrder(order.id)
-                                }}>Cancel Order</button>
                             </section>
                         })
                     }

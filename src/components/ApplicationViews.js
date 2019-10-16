@@ -13,7 +13,9 @@ import CategoryView from "./category/CategoryView"
 import MySettings from "./settings/MySettings";
 import PaymentTypes from "./paymenttype/PaymentTypes";
 import ProductList from "./product/ProductList"
+import Order from "./order/Order";
 import MyOrder from "./order/MyOrder";
+
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
@@ -96,6 +98,15 @@ const ApplicationViews = () => {
       />
 
       <Route
+
+        path="/orders"
+        render={props => {
+          return <Order {...props} />;
+        }}
+        />
+
+    <Route
+
         path="/my-order"
         render={props => {
           return <MyOrder {...props} />;
