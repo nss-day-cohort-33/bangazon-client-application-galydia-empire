@@ -12,6 +12,8 @@ import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
 import CategoryView from "./category/CategoryView"
 import MySettings from "./settings/MySettings";
 import PaymentTypes from "./paymenttype/PaymentTypes";
+import SearchProduct from "./search/SearchProducts"
+import getProductLocation from "./home/HomeProduct"
 
 const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
@@ -22,7 +24,7 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-              if(isAuthenticated()) return <HomeProduct {...props} />;
+              if(isAuthenticated()) return <HomeProduct {...props} getProductLocation={getProductLocation} />;
               else return <Redirect to="/login"/>
 
 
@@ -97,6 +99,13 @@ const ApplicationViews = () => {
         render={props => {
           let productId = +props.match.params.productId;
           return <ProductDetails {...props} productId={productId} />;
+        }}
+      />
+      <Route
+        exact
+        path="/product/:location"
+        render={props => {
+          return <SearchProduct {...props} />;
         }}
       />
 
