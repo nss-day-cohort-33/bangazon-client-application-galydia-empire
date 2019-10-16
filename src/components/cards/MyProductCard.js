@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
+// import getProducts from "../product/ProductList"
 
 const MyProductCard = props => {
 
@@ -14,7 +15,10 @@ const MyProductCard = props => {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-            .then("/myproducts")
+            .then(() =>{
+                alert("Your Product Has Been Deleted")
+                props.history.push("/myproducts")
+            })
     }
 
     return (
@@ -25,6 +29,7 @@ const MyProductCard = props => {
                 </Link>
                 <button onClick={() => {
                                 deleteProduct(props.product.id)
+                                props.history.push("/myproducts")
                             }}>Delete</button>
             </section>
         </>

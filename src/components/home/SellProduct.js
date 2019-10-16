@@ -16,6 +16,7 @@ const SellProduct = props => {
     const location = useRef()
     const [categoryList, setCategoryList] = useState([])
 
+
     useEffect(() => {
         // Fetch the data from localhost:8000/producttypes
         fetch("http://localhost:8000/producttypes", {
