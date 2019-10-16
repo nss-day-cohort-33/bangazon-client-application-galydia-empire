@@ -12,6 +12,7 @@ import PaymentTypeForm from "./paymenttype/PaymentTypeForm";
 import CategoryView from "./category/CategoryView"
 import MySettings from "./settings/MySettings";
 import PaymentTypes from "./paymenttype/PaymentTypes";
+import ProductList from "./product/ProductList"
 import Order from "./order/Order";
 import MyOrder from "./order/MyOrder";
 
@@ -67,6 +68,15 @@ const ApplicationViews = () => {
         path="/paymenttypes"
         render={props => {
           if (isAuthenticated()) return <PaymentTypes />;
+          else return <Redirect to="/login" />;
+        }}
+      />
+
+        <Route
+        exact
+        path="/myproducts"
+        render={props => {
+          if (isAuthenticated()) return <ProductList {...props} />;
           else return <Redirect to="/login" />;
         }}
       />
