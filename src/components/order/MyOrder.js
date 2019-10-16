@@ -51,7 +51,7 @@ const MyOrder = props => {
                                 <button onClick={() => {
                                     console.log(order.id)
                                     deleteOrder(order.id)
-                                }}>Delete</button>
+                                }}>Cancel Order</button>
                             </section>
                         })
                     }
