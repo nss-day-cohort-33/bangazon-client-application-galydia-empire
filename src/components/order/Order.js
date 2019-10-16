@@ -8,6 +8,20 @@ const Order = props => {
     const [openOrder, setOpenOrder] = useState([])
     const { isAuthenticated } = useSimpleAuth()
     const payment_type_value = useRef()
+    const [orderProducts, setOrderProducts] = useState([])
+
+    useEffect(() => {
+        // Fetch the data from localhost:8000/producttypes
+        fetch("http://localhost:8000/orderproducts", {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+        .then(response => response.json())
+        .then(setOrderProducts)
+    }, [])
 
     const getMyCart = () => {
         if (isAuthenticated()) {
@@ -24,7 +38,6 @@ const Order = props => {
                 setCart(response.reverse()))
         }
     }
-    useEffect(getMyCart, [])
 
     const getPaymentTypes = () => {
         if (isAuthenticated()) {
@@ -41,7 +54,6 @@ const Order = props => {
                 setPaytypes(response))
         }
     }
-    useEffect(getPaymentTypes, [])
 
     const getMyOrder = () => {
         if (isAuthenticated()) {
@@ -58,7 +70,11 @@ const Order = props => {
                     setOpenOrder(response))
         }
     }
-    useEffect(getMyOrder, [])
+    useEffect(() => {
+        getMyOrder()
+        getPaymentTypes()
+        getMyCart()
+    }, [])
 
     const deleteOrder = (id) => {
         fetch(`http://localhost:8000/orders/${id}`, {
@@ -71,13 +87,35 @@ const Order = props => {
             .then(props.history.push("/home"))
     }
 
+    const deleteOrderProduct = () => {
+        let orderProduct = orderProducts
+        for (orderProduct in orderProducts) {
+            if (orderProduct.order_id === openOrder.id && orderProduct.product_id === product.id) {
+                let idToDelete = orderProduct.id
+
+
+                fetch(`http://localhost:8000/orderproducts/${idToDelete}`, {
+                    "method": "DELETE",
+                    "headers": {
+                        "Accept": "application/json",
+                        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                    }
+                })
+                .then((response) =>
+                setOpenOrder(response))
+            }
+        }
+    }
+
     return (
         <>
         <h1>My Open Order</h1>
                 <article className="cartList">
                 {
                         cart.map(product =>{
-                                return( <Product key={product.id} product={product} /> )
+                                return( <Product key={product.id} product={product} deleteOrderProduct={deleteOrderProduct} />  )
+
+
                         })
                 }
                 </article>

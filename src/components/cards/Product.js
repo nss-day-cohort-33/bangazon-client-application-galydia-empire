@@ -13,6 +13,7 @@ const Product = props => {
                 <Link className="NavLink" to={`/product/${props.product.id}`}>
                 <h3>{props.product.name}</h3>
                 </Link>
+                <button id="delete_product" onClick={() => props.deleteOrderProduct(props.product.id)}>Remove Product</button>
             </section>
         </>
     )
