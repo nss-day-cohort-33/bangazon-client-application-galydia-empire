@@ -46,10 +46,10 @@ const HomeProduct = props => {
                 }
             })
                 .then(response => response.json())
-                .then((response) => {
-                debugger;
+                .then((response) =>
 
-                return setProducts(response.reverse())})
+
+                setProducts(response.reverse()))
         }
     }
     useEffect(fetchProductLocation, [])
@@ -70,6 +70,7 @@ const HomeProduct = props => {
         <input type="search" id="search_input"  ref={search_products} placeholder="City"/>
 
         <button id="search_input" onClick={() =>{fetchProductLocation()}}>Search</button>
+        <button id="reset" onClick = {() => {getProductsQuantity()}}>Reset</button>
 
 
 
@@ -88,18 +89,3 @@ const HomeProduct = props => {
 
 export default HomeProduct
 
-// const getProducts = () => {
-    //     if (isAuthenticated()) {
-    //         fetch('http://localhost:8000/products', {
-
-    //             "method": "GET",
-    //             "headers": {
-    //                 "Accept": "application/json",
-    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-    //             }
-    //         })
-    //             .then(response => response.json())
-    //             .then(setProducts)
-    //     }
-    // }
-    // useEffect(getProducts, [])

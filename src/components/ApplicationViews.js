@@ -24,7 +24,7 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-              if(isAuthenticated()) return <HomeProduct {...props} getProductLocation={getProductLocation} />;
+              if(isAuthenticated()) return <HomeProduct {...props}  />;
               else return <Redirect to="/login"/>
 
 
@@ -99,13 +99,6 @@ const ApplicationViews = () => {
         render={props => {
           let productId = +props.match.params.productId;
           return <ProductDetails {...props} productId={productId} />;
-        }}
-      />
-      <Route
-        exact
-        path="/product/:location"
-        render={props => {
-          return <SearchProduct {...props} />;
         }}
       />
 
