@@ -4,7 +4,7 @@ import "../home/productlist.css"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const ProductList = props => {
-    const [products, setCustomerProducts] = useState([])
+    const [products, setProducts] = useState([])
     const { isAuthenticated } = useSimpleAuth()
 
 
@@ -24,7 +24,8 @@ const ProductList = props => {
             })
                 .then(response => response.json())
                 .then((response) =>
-                setCustomerProducts(response))
+                setProducts(response))
+
         }
     }
     useEffect(getProducts, [])
@@ -35,7 +36,7 @@ const ProductList = props => {
                 <article className="productList">
                 {
                         products.map(product =>{
-                                return( <MyProductCard key={product.id} product={product} {...props} getProducts={getProducts}/> )
+                                return( <MyProductCard key={product.id} product={product} {...props} getProducts={getProducts} /> )
                         })
                 }
                 </article>
