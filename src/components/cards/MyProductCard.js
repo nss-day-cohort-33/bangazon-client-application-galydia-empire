@@ -28,10 +28,9 @@ const MyProductCard = props => {
                 <h3>{props.product.name}</h3>
                 </Link>
                 <h5>Quantity: {props.product.quantity}</h5>
-                <h5>Amount Sold: {props.product.quantity}</h5>
+                <h5>Amount Sold: {props.product.total_sold}</h5>
                 <button onClick={() => {
                                 deleteProduct(props.product.id)
-                                props.history.push("/myproducts")
                             }}>Delete</button>
             </section>
         </>
