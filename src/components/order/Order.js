@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import Product from "../cards/Product"
+import OrderProduct from "../cards/OrderProduct"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const Order = props => {
@@ -129,7 +129,7 @@ const Order = props => {
                 <article className="cartList">
                 {
                         cart.map(product =>{
-                                return( <Product key={product.id} product={product} deleteOrderProduct={deleteOrderProduct} />  )
+                                return( <OrderProduct key={product.id} product={product} deleteOrderProduct={deleteOrderProduct} />  )
 
 
                         })

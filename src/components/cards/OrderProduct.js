@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 
-const Product = props => {
+const OrderProduct = props => {
 
     //Author: Sam Birky
     //Purpose: Show products to user as a card with name displayed
@@ -13,9 +13,10 @@ const Product = props => {
                 <Link className="NavLink" to={`/product/${props.product.id}`}>
                 <h3>{props.product.name}</h3>
                 </Link>
+                <button id="delete_product" onClick={() => props.deleteOrderProduct(props.product.id)}>Remove Product</button>
             </section>
         </>
     )
 }
 
-export default Product
+export default OrderProduct
