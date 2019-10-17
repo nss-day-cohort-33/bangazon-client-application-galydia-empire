@@ -68,10 +68,11 @@ const Order = props => {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-            .then(props.history.push("/home"))
+            .then(props.history.push("/"))
     }
 
     const editOrder = (payment_type) => {
+        if (payment_type) {
         fetch(`http://localhost:8000/orders/${openOrder.id}`, {
             "method": "PUT",
             "headers": {
@@ -87,6 +88,10 @@ const Order = props => {
                 alert("Congrats on all the STUFF")
                 props.history.push("/")
             })
+        }
+        else {
+            alert("Must choose payment method!")
+        }
     }
 
     return (
