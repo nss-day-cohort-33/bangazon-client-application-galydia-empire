@@ -15,6 +15,7 @@ import PaymentTypes from "./paymenttype/PaymentTypes";
 import ProductList from "./product/ProductList"
 import Order from "./order/Order";
 import MyAccount from "./order/MyAccount";
+import OrderHistory from "./order/OrderHistory";
 
 
 const ApplicationViews = () => {
@@ -111,6 +112,14 @@ const ApplicationViews = () => {
         render={props => {
           if (isAuthenticated()) return <MyAccount {...props} />;
           else return <Redirect to="/login" />;
+        }}
+      />
+
+      <Route
+
+        path="/orderhistory"
+        render={props => {
+          return <OrderHistory {...props} />;
         }}
       />
 
