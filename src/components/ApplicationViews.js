@@ -16,6 +16,7 @@ import ProductList from "./product/ProductList"
 import Order from "./order/Order";
 import MyAccount from "./order/MyAccount";
 import OrderHistory from "./order/OrderHistory";
+import OrderDetails from "./order/OrderDetails";
 
 
 const ApplicationViews = () => {
@@ -117,9 +118,18 @@ const ApplicationViews = () => {
 
       <Route
 
-        path="/orderhistory"
+        path="/order-history"
         render={props => {
           return <OrderHistory {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/order/:orderId(\d+)"
+        render={props => {
+          let orderId = +props.match.params.orderId;
+          return <OrderDetails {...props} orderId={orderId} />;
         }}
       />
 

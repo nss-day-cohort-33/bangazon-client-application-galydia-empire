@@ -13,7 +13,7 @@ const MyAccount = props => {
     return (
         <button onClick={() => {
             props.history.push("/order-history")
-        }}>Cancel Order</button>
+        }}>View Order History</button>
     )
 }
 
