@@ -43,8 +43,11 @@ const SellProduct = props => {
         let dd = today.getDate()
         let mm = today.getMonth()+1
         let yyyy = today.getFullYear()
+            if (price.current.value > 10000) {
+                alert("Price May Not Be Over $10,000")
 
-        fetch('http://localhost:8000/products', {
+            } else {
+        fetch("http://localhost:8000/products", {
             "method": "POST",
             "headers": {
                 "Accept": "application/json",
@@ -69,6 +72,7 @@ const SellProduct = props => {
                 props.history.push("/")
             })
         }
+    }
     }
 
     return (

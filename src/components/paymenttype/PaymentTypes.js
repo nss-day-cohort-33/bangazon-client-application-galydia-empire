@@ -52,7 +52,6 @@ const PaymentTypes = props => {
                                 <h3>Expiration Date | {paymenttype.expiration_date}</h3>
                                 <h3>Created At | {paymenttype.created_at}</h3>
                                 <button onClick={() => {
-                                    // console.log({paymenttype})
                                                 deletePaymentType(paymenttype.id)
                                             }}>Delete</button>
                             </section>

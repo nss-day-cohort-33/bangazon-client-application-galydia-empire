@@ -16,7 +16,7 @@ const HomeProduct = props => {
 
     const getProductsQuantity = () => {
         if (isAuthenticated()) {
-            fetch(`http://localhost:8000/products?quantity=20`, {
+            fetch("http://localhost:8000/products?quantity=20", {
 
                 "method": "GET",
                 "headers": {
@@ -26,11 +26,10 @@ const HomeProduct = props => {
             })
                 .then(response => response.json())
                 .then((response) =>
-                setProducts(response.reverse()))
-
+                setProducts(response.reverse())
+                )
         }
     }
-    useEffect(getProductsQuantity, [])
 
     const fetchProductLocation = () => {
         if (isAuthenticated()) {
@@ -52,16 +51,10 @@ const HomeProduct = props => {
                 setProducts(response.reverse()))
         }
     }
-    useEffect(fetchProductLocation, [])
+    useEffect(() => {
+        fetchProductLocation()
+         getProductsQuantity()}, [])
 
-    const userSearchLocation = () => {
-        let search_location = search_products.current.value
-        products.map(product =>{
-            if (product.location === search_location)
-            return( <Product key={product.id} product={product} /> )
-            props.history.push(`/location/${search_location}`)
-        })
-    }
 
     return (
         <>
