@@ -8,20 +8,8 @@ const Order = props => {
     const [openOrder, setOpenOrder] = useState([])
     const { isAuthenticated } = useSimpleAuth()
     const payment_type_value = useRef()
-    const [orderProducts, setOrderProducts] = useState([])
 
-    useEffect(() => {
-        // Fetch the data from localhost:8000/producttypes
-        fetch("http://localhost:8000/orderproducts", {
-            "method": "GET",
-            "headers": {
-                "Accept": "application/json",
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-            }
-        })
-        .then(response => response.json())
-        .then(setOrderProducts)
-    }, [])
+
 
     const getMyCart = () => {
         if (isAuthenticated()) {
@@ -87,25 +75,23 @@ const Order = props => {
             .then(props.history.push("/home"))
     }
 
-    const deleteOrderProduct = () => {
-        let orderProduct = orderProducts
-        for (orderProduct in orderProducts) {
-            if (orderProduct.order_id === openOrder.id && orderProduct.product_id === product.id) {
-                let idToDelete = orderProduct.id
+    const deleteOrderProduct = (id) => {
 
-
-                fetch(`http://localhost:8000/orderproducts/${idToDelete}`, {
-                    "method": "DELETE",
+                fetch(`http://localhost:8000/order/cart/${id}`, {
+                    "method": "PUT",
                     "headers": {
                         "Accept": "application/json",
                         "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                    }
+                    },
+                    body: JSON.stringify({
+                        "product_id": id
+                    })
                 })
-                .then((response) =>
-                setOpenOrder(response))
+                .then((response) => {
+                setOpenOrder(response)})
             }
-        }
-    }
+
+
 
     return (
         <>

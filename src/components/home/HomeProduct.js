@@ -54,14 +54,7 @@ const HomeProduct = props => {
     }
     useEffect(fetchProductLocation, [])
 
-    const userSearchLocation = () => {
-        let search_location = search_products.current.value
-        products.map(product =>{
-            if (product.location === search_location)
-            return( <Product key={product.id} product={product} /> )
-            props.history.push(`/location/${search_location}`)
-        })
-    }
+
 
     return (
         <>
