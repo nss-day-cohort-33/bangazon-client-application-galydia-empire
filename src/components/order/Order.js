@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import Product from "../cards/Product"
+import OrderProduct from "../cards/OrderProduct"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const Order = props => {
@@ -8,6 +8,8 @@ const Order = props => {
     const [openOrder, setOpenOrder] = useState([])
     const { isAuthenticated } = useSimpleAuth()
     const payment_type_value = useRef()
+
+
 
     const getMyCart = () => {
         if (isAuthenticated()) {
@@ -24,7 +26,6 @@ const Order = props => {
                 setCart(response.reverse()))
         }
     }
-    useEffect(getMyCart, [])
 
     const getPaymentTypes = () => {
         if (isAuthenticated()) {
@@ -41,7 +42,6 @@ const Order = props => {
                 setPaytypes(response))
         }
     }
-    useEffect(getPaymentTypes, [])
 
     const getMyOrder = () => {
         if (isAuthenticated()) {
@@ -58,7 +58,11 @@ const Order = props => {
                     setOpenOrder(response))
         }
     }
-    useEffect(getMyOrder, [])
+    useEffect(() => {
+        getMyOrder()
+        getPaymentTypes()
+        getMyCart()
+    }, [])
 
     const deleteOrder = (id) => {
         fetch(`http://localhost:8000/orders/${id}`, {
@@ -94,13 +98,40 @@ const Order = props => {
         }
     }
 
+    // Author: Jeff Hill
+    // Purpose: Remove a product from the users cart by updating the cart order
+    // Methods: PUT
+
+    const deleteOrderProduct = (id) => {
+
+                fetch(`http://localhost:8000/orders/cart`, {
+                    "method": "PUT",
+                    "headers": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                    },
+                    body: JSON.stringify({
+                        "product_id": id
+                    })
+                })
+                .then((response) =>
+                setOpenOrder(response))
+                .then(() => getMyCart())
+
+            }
+
+
+
     return (
         <>
         <h1>My Open Order</h1>
                 <article className="cartList">
                 {
                         cart.map(product =>{
-                                return( <Product key={product.id} product={product} /> )
+                                return( <OrderProduct key={product.id} product={product} deleteOrderProduct={deleteOrderProduct} />  )
+
+
                         })
                 }
                 </article>
