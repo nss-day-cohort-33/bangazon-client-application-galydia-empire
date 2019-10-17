@@ -3,7 +3,12 @@ import Product from "../cards/Product"
 import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
-const OrderHistory = props => {
+const OrderHistory = () => {
+
+    //Author: Joy Ittycheriah
+    //Purpose: Shows the Orders that are completed for the authenticated user (contains a payment type).
+    //         Clicking on the link represented by the order takes the user to the details of the order page.
+
     const [completed, setCompleted] = useState([])
     const { isAuthenticated } = useSimpleAuth()
 
