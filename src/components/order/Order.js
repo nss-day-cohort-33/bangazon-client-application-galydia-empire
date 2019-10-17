@@ -75,6 +75,10 @@ const Order = props => {
             .then(props.history.push("/home"))
     }
 
+    // Author: Jeff Hill
+    // Purpose: Remove a product from the users cart by updating the cart order
+    // Methods: PUT
+
     const deleteOrderProduct = (id) => {
 
                 fetch(`http://localhost:8000/orders/cart`, {
