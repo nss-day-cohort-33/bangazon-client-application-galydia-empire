@@ -72,7 +72,30 @@ const Order = props => {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-            .then(props.history.push("/home"))
+            .then(props.history.push("/"))
+    }
+
+    const editOrder = (payment_type) => {
+        if (payment_type) {
+        fetch(`http://localhost:8000/orders/${openOrder.id}`, {
+            "method": "PUT",
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            },
+            "body": JSON.stringify({
+                "payment_type": payment_type
+            })
+        })
+            .then(() => {
+                alert("Congrats on all the STUFF")
+                props.history.push("/")
+            })
+        }
+        else {
+            alert("Must choose payment method!")
+        }
     }
 
     // Author: Jeff Hill
@@ -113,7 +136,7 @@ const Order = props => {
                 }
                 </article>
                 <fieldset>
-                    <label htmlFor="payment_type_id">payment_type:  </label>
+                    <label htmlFor="payment_type_value">payment_type:  </label>
                     <select ref={payment_type_value} id = "payment_type_name" name="payment_type" required placeholder="payment_type">
                         {/* Set default option for payment_type dropdown */}
                         <option value="">Select a payment type when ready</option>
@@ -128,10 +151,9 @@ const Order = props => {
                         )}
                     </select>
                 </fieldset>
-                <button  onClick={() => console.log("Fuck You, Pay Me")}
+                <button  onClick={() => editOrder(payment_type_value.current.value)}
                 >FinishOrder</button>
                 <button onClick={() => {
-                    console.log(openOrder)
                     deleteOrder(openOrder.id)
                 }}>Cancel Order</button>
         </>
