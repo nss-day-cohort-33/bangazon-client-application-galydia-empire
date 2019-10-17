@@ -77,18 +77,21 @@ const Order = props => {
 
     const deleteOrderProduct = (id) => {
 
-                fetch(`http://localhost:8000/order/cart/${id}`, {
+                fetch(`http://localhost:8000/orders/cart`, {
                     "method": "PUT",
                     "headers": {
                         "Accept": "application/json",
+                        "Content-Type": "application/json",
                         "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
                     },
                     body: JSON.stringify({
                         "product_id": id
                     })
                 })
-                .then((response) => {
-                setOpenOrder(response)})
+                .then((response) =>
+                setOpenOrder(response))
+                .then(() => getMyCart())
+
             }
 
 
