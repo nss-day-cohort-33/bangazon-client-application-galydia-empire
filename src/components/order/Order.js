@@ -90,7 +90,7 @@ const Order = props => {
             })
         }
         else {
-            alert("Must choose payment menthod!")
+            alert("Must choose payment method!")
         }
     }
 
