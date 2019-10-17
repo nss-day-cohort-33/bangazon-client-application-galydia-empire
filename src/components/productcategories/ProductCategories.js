@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
-  const { isAuthenticated } = useSimpleAuth();
 
   const getCategories = () => {
     {
@@ -17,7 +15,6 @@ const ProductCategories = () => {
       })
         .then(response => response.json())
         .then(setCategories);
-      console.log(categories);
     }
   };
 

@@ -44,7 +44,6 @@ const ProductDetails = props => {
                 "product_id": prodId
             })
         })
-        .then(response => response.json())
         .then(() => {
           props.history.push("/orders");
 
