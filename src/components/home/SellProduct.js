@@ -35,7 +35,7 @@ const SellProduct = props => {
 
     const addNewProductForSale = (event) => {
         event.preventDefault()
-        if (category_value.current.value == "") {
+        if (category_value.current.value === "") {
             alert("Please select a Product Category")
         }
         else {
@@ -151,7 +151,7 @@ const SellProduct = props => {
                                 // Map over the state of product types i.e. categories and set the id and name for each option in the category dropdown
                                         categoryList.map((category) => {
                                             return (
-                                                <option value={category.id}>
+                                                <option key={category.id} value={category.id}>
                                                     {category.name}
                                                 </option>
                                             )

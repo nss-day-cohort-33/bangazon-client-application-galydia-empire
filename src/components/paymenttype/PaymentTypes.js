@@ -46,7 +46,7 @@ const PaymentTypes = props => {
                 <article className="productList">
                 {
                         paymenttypes.map(paymenttype =>{
-                            return <section className="productList">
+                            return <section key={paymenttype.id} className="productList">
                                 <h3>Merchant Name | {paymenttype.merchant_name}</h3>
                                 <h3>Account Number | {paymenttype.account_number}</h3>
                                 <h3>Expiration Date | {paymenttype.expiration_date}</h3>

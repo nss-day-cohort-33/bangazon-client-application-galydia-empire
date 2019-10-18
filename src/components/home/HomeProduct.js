@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
 import Product from "../cards/Product"
-import { Link } from "react-router-dom"
 import "./productlist.css"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
@@ -52,7 +51,6 @@ const HomeProduct = props => {
         }
     }
     useEffect(() => {
-        fetchProductLocation()
          getProductsQuantity()}, [])
 
 
