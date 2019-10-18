@@ -39,7 +39,7 @@ const OrderDetails = props => {
             <article className="cartList">
                 {
                     oldcart.products.map(product => {
-                        return (<Product key={product.id} product={product} />)
+                        return (<div key={product.id}><Product product={product} /></div>)
                     })
                 }
                 <h3>The total for this order is: $ {oldcart.total}</h3>
