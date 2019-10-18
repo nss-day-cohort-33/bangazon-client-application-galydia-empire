@@ -36,10 +36,9 @@ const OrderHistory = () => {
             <article className="orderHistoryList">
                 {
                     completed.map(eachorder => {
-                        console.log("eachorder", eachorder)
                         return (
                             <Link className="NavLink" to={`/order/${eachorder.id}`}>
-                                <h3>{eachorder.id}</h3>
+                                <h3>Order Id:  {eachorder.id}</h3>
                             </Link>)
                     })
                 }
