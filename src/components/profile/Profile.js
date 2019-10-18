@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 // Author: Scott Silver
 // Purpose: Render 'My Profile' Page with links to add new payment form.

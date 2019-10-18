@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react"
-// import "../home/orderlist.css"
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
-// import PaymentType from "./PaymentType"
+import React from "react"
 
 const MyAccount = props => {
 
