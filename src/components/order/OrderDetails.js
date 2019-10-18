@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import Product from "../cards/Product"
-// import "./ProductDetails.css"
 
-// by MCFlyJo Hacking the Planet
 const OrderDetails = props => {
 
-    //Author: Joy Ittycheriah
+    //Author: Joy Ittycheriah/Entire Galydia Team--Jeff Hill, Matthew Caldwell, Sam Birky
     //Purpose: Shows the Products for the order link that was clicked.
 
     const { isAuthenticated } = useSimpleAuth();
-    //Creat a state variable for single product - useState()
-    const [oldcart, setOldCart] = useState([])
-    //Create a state variable for quantity editting later - useState()
+    //Creat a state variable for holding the product values related to the order item of interest [Notice that the useState contains an object that contains products being defined as an array.]
+    const [oldcart, setOldcart] = useState({ products: [] })
 
     const getOldCart = (orderid) => {
-        console.log("order id", orderid)
         if (isAuthenticated()) {
             fetch(`http://localhost:8000/orders/carthistory?order=${orderid}`, {
 
@@ -28,33 +24,27 @@ const OrderDetails = props => {
             })
                 .then(response => response.json())
                 .then((response) =>
-                    setOldCart(response))
+                    setOldcart(response)
+                )
         }
     }
     useEffect(() => {
-
         getOldCart(props.match.params.orderId)
     }, [])
 
-
-
-
-    //creat HTML representation with JSX
     return (
         <>
             <h1>Products on My Old Order</h1>
+
             <article className="cartList">
                 {
-                    oldcart.map(product => {
-                        return (<Product key={product.id} product={product} />)
+                    oldcart.products.map(product => {
+                        return (<div key={product.id}><Product product={product} /></div>)
                     })
                 }
+                <h3>The total for this order is: $ {oldcart.total}</h3>
             </article>
-            {/* <button  onClick={() => editOrder(payment_type_value.current.value)}
-                >FinishOrder</button> */}
-            {/* <button onClick={() => {
-                    deleteOrder(openOrder.id)
-                }}>Cancel Order</button> */}
+
         </>
     )
 }

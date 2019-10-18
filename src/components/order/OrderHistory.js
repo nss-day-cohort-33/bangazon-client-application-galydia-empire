@@ -32,13 +32,12 @@ const OrderHistory = () => {
     return (
         <>
             <h1>My Order History</h1>
-            <article className="orderHistoryList">
+            <article key={completed} className="orderHistoryList">
                 {
                     completed.map(eachorder => {
-                        console.log("eachorder", eachorder)
                         return (
-                            <Link className="NavLink" to={`/order/${eachorder.id}`}>
-                                <h3>{eachorder.id}</h3>
+                            <Link key={eachorder.id} className="NavLink" to={`/order/${eachorder.id}`}>
+                                <h3>Order Id:  {eachorder.id}</h3>
                             </Link>)
                     })
                 }
