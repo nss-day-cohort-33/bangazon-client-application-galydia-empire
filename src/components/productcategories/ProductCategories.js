@@ -5,7 +5,7 @@ const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = () => {
-    {
+
       fetch("http://localhost:8000/producttypes", {
         method: "GET",
         headers: {
@@ -15,7 +15,7 @@ const ProductCategories = () => {
       })
         .then(response => response.json())
         .then(setCategories);
-    }
+
   };
 
   useEffect(() => {
@@ -32,13 +32,13 @@ const ProductCategories = () => {
           .filter(
             category =>
               category.product_set.map(cat => {
-                return <div>{cat.name}</div>;
+                return <div key={cat.id}>{cat.name}</div>;
               }).length >= 1
           )
           .map(item => {
             let catId = +item.url.split("s/")[1];
             return (
-              <div>
+              <div key={catId}>
             {/* renders product category name */}
                 <h3>
                 <Link to={`/category/${catId}`}>{item.name}</Link> (
@@ -55,7 +55,7 @@ const ProductCategories = () => {
                   {item.product_set.slice(0, 3).map(item => {
                     let itemId = +item.url.split("s/")[1];
                     return (
-                      <div>
+                      <div key={itemId}>
                         <Link to={`/product/${itemId}`}>{item.name}</Link>
                       </div>
                     );

@@ -144,7 +144,7 @@ const Order = props => {
                 // Map over the state of payment types
                         paytypes.map((paytype) => {
                             return (
-                                <option value={paytype.id}>
+                                <option key={paytype.id} value={paytype.id}>
                                     {paytype.merchant_name}: {paytype.account_number}
                                 </option>
                         )}
