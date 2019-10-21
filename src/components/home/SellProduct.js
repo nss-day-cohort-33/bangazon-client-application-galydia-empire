@@ -34,9 +34,13 @@ const SellProduct = props => {
 
 
     const addNewProductForSale = (event) => {
+        let validCharacters = /[!@#$%^&*()]+/
         event.preventDefault()
         if (category_value.current.value === "") {
             alert("Please select a Product Category")
+        }
+        else if ((name.current.value).match(validCharacters) || (description.current.value).match(validCharacters)) {
+            window.alert("Please enter product name/details with no special characters; ie. no '!@#$%^&*()'")
         }
         else {
         let today = new Date();
