@@ -1,3 +1,18 @@
+# BANGAZON GALYDIA EMPIIIIIRE!
+An application for the selling and buying of goods between users.
+
+## Screenshots
+![image of bangazon app](https://raw.githubusercontent.com/nss-day-cohort-33/bangazon-client-application-galydia-empire/master/bangazonScreen.png)
+
+## Installation Instructions
+- Clone down this repo
+- At the root of the project, run `npm install`
+- Clone down the following repo and review its ReadMe for backend/server installation instructions: https://github.com/nss-day-cohort-33/bangazon-public-api-galydia-empire
+
+## How to Run
+- In your terminal, type `npm start`
+
+
 # BANGAZON GALYDIAAAAA!
 
 
